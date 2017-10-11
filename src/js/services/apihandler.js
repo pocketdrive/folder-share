@@ -39,6 +39,7 @@
             };
 
             ApiHandler.prototype.list = function (apiUrl, path, customDeferredHandler, exts) {
+                console.log(apiUrl);
                 var self = this;
                 var dfHandler = customDeferredHandler || self.deferredHandler;
                 var deferred = $q.defer();
@@ -88,6 +89,7 @@
                 var deferred = $q.defer();
                 var data = {
                     action: 'sharefolder',
+                    username:'ravidu',
                     path:path,
                     users:users,
                     candidates:candidates,

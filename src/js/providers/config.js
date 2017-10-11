@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
     angular.module('FileManagerApp').provider('fileManagerConfig', function() {
-        let apiUrl = '192.168.17.1';
+        let apiUrl = '127.0.0.1';
         let apiport = '3000';
 
         var values = {
