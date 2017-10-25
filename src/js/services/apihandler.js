@@ -1,6 +1,6 @@
 (function (angular, $) {
     'use strict';
-    angular.module('FileManagerApp').service('apiHandler', ['$http','$rootScope', '$q', '$window', '$translate', 'Upload', 'fileManagerConfig',
+    angular.module('FileManagerApp').service('apiHandler', ['$http', '$rootScope', '$q', '$window', '$translate', 'Upload', 'fileManagerConfig',
         function ($http, $rootScope, $q, $window, $translate, Upload, fileManagerConfig) {
 
             $http.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -10,6 +10,8 @@
                 this.asyncSuccess = false;
                 this.deviceName = "";
                 this.error = '';
+                this.username = (new URLSearchParams(window.location.search)).get('username');
+
             };
 
             ApiHandler.prototype.deferredHandler = function (data, deferred, code, defaultMsg) {
@@ -21,7 +23,7 @@
                     this.error = 'Error 404 - Backend bridge is not working, please check the ajax response.';
                 }
                 if (code === 503) {
-                    this.error = 'Error - Pocket Drive device '+this.deviceName+' cannot be reached at the momentttttt.';
+                    this.error = 'Error - Pocket Drive device ' + this.deviceName + ' cannot be reached at the momentttttt.';
                 }
                 if (data.result && data.result.error) {
                     this.error = data.result.error;
@@ -46,19 +48,21 @@
                 var data = {
                     action: 'list',
                     path: path,
-                    username:"ravidu",
+                    username: self.username,
                     fileExtensions: exts && exts.length ? exts : undefined
                 };
+
+                console.log(data)
 
                 self.inprocess = true;
                 self.error = '';
 
-                $http.post(apiUrl, data).then(function(response) {
+                $http.post(apiUrl, data).then(function (response) {
                     console.log(response.data);
                     dfHandler(response.data, deferred, response.status);
-                }, function(response) {
+                }, function (response) {
                     dfHandler(response.data, deferred, response.status, 'Unknown error listing, check the response');
-                })['finally'](function() {
+                })['finally'](function () {
                     self.inprocess = false;
                 });
                 return deferred.promise;
@@ -84,25 +88,26 @@
                 return deferred.promise;
             };
 
-            ApiHandler.prototype.shareFolder = function(apiUrl, path,users,candidates,removedCandidates, issharedFolder){
+            ApiHandler.prototype.shareFolder = function (apiUrl, path, users, candidates, removedCandidates, issharedFolder) {
+                // Obtain the username from APIpo
                 var self = this;
                 var deferred = $q.defer();
                 var data = {
                     action: 'sharefolder',
-                    username:'ravidu',
-                    path:path,
-                    users:users,
-                    candidates:candidates,
-                    removedcandidates:removedCandidates,
-                    issharedFolder:issharedFolder
+                    username: self.username,
+                    path: path,
+                    users: users,
+                    candidates: candidates,
+                    removedcandidates: removedCandidates,
+                    issharedFolder: issharedFolder
                 };
 
-                $http.post(apiUrl, data).then(function(response) {
+                $http.post(apiUrl, data).then(function (response) {
                     console.log(response.data);
                     self.deferredHandler(response.data, deferred, response.status);
-                }, function(response) {
+                }, function (response) {
                     self.deferredHandler(response.data, deferred, response.status, $translate.instant('error_copying'));
-                })['finally'](function() {
+                })['finally'](function () {
                     self.inprocess = false;
                 });
                 // self.inprocess = true;
@@ -121,14 +126,14 @@
 
             };
 
-            ApiHandler.prototype.getUsers = function(apiUrl, path,issharedFolder){
+            ApiHandler.prototype.getUsers = function (apiUrl, path, issharedFolder) {
                 var self = this;
                 var deferred = $q.defer();
                 var data = {
                     action: 'getusers',
-                    path:path,
-                    username:"ravidu",
-                    issharedFolder:issharedFolder
+                    path: path,
+                    username: self.username,
+                    issharedFolder: issharedFolder
                 };
 
                 self.inprocess = true;
@@ -137,12 +142,12 @@
                 self.inprocess = true;
                 self.error = '';
 
-                $http.post(apiUrl, data).then(function(response) {
+                $http.post(apiUrl, data).then(function (response) {
                     console.log(response.data);
                     self.deferredHandler(response.data, deferred, response.status);
-                }, function(response) {
+                }, function (response) {
                     self.deferredHandler(response.data, deferred, response.status, $translate.instant('error_copying'));
-                })['finally'](function() {
+                })['finally'](function () {
                     self.inprocess = false;
                 });
 
@@ -156,7 +161,7 @@
                     action: 'linkshare',
                     item: item
                 };
-                
+
                 self.inprocess = true;
                 self.error = '';
 
