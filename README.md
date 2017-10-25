@@ -2,5 +2,5 @@
 
 ## How to run
     bower install
-    php -S localhost:4000
+    php -S 0.0.0.0:4000
 

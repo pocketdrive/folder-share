@@ -41,7 +41,6 @@
             };
 
             ApiHandler.prototype.list = function (apiUrl, path, customDeferredHandler, exts) {
-                console.log(apiUrl);
                 var self = this;
                 var dfHandler = customDeferredHandler || self.deferredHandler;
                 var deferred = $q.defer();
@@ -52,13 +51,10 @@
                     fileExtensions: exts && exts.length ? exts : undefined
                 };
 
-                console.log(data)
-
                 self.inprocess = true;
                 self.error = '';
 
                 $http.post(apiUrl, data).then(function (response) {
-                    console.log(response.data);
                     dfHandler(response.data, deferred, response.status);
                 }, function (response) {
                     dfHandler(response.data, deferred, response.status, 'Unknown error listing, check the response');
@@ -103,7 +99,6 @@
                 };
 
                 $http.post(apiUrl, data).then(function (response) {
-                    console.log(response.data);
                     self.deferredHandler(response.data, deferred, response.status);
                 }, function (response) {
                     self.deferredHandler(response.data, deferred, response.status, $translate.instant('error_copying'));
@@ -143,7 +138,6 @@
                 self.error = '';
 
                 $http.post(apiUrl, data).then(function (response) {
-                    console.log(response.data);
                     self.deferredHandler(response.data, deferred, response.status);
                 }, function (response) {
                     self.deferredHandler(response.data, deferred, response.status, $translate.instant('error_copying'));
