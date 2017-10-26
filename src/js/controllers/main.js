@@ -239,7 +239,9 @@
 
                         }
                     }
-                    $scope.apiMiddleware.shareFolder(path, candidates, $scope.candidates, $scope.removedCandidates, issharedFolder);
+                    $scope.apiMiddleware.shareFolder(path, candidates, $scope.candidates, $scope.removedCandidates, issharedFolder).then(() => {
+                        $scope.fileNavigator.refresh();
+                    });
                 } else {
                     $scope.apiMiddleware.apiHandler.error = "Please select a user to share";
                 }
