@@ -60,7 +60,6 @@
                     self.fileList = (data.result || []).map(function(file) {
                         return new Item(file, self.currentPath);
                     });
-                    console.log(self.fileList);
                     self.buildTree(path);
                     self.onRefresh();
                 }).finally(function() {

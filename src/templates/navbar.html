@@ -17,7 +17,7 @@
                             </button>
                             {{fileNavigator.getCurrentFolderName() | strLimit : 12}}
                         </div>
-                        <div class="btn-group">
+                        <!--<div class="btn-group">
                             <button class="btn btn-flat btn-sm dropdown-toggle" type="button" id="dropDownMenuSearch"
                                     data-toggle="dropdown" aria-expanded="true">
                                 <i class="glyphicon glyphicon-search mr2"></i>
@@ -27,7 +27,7 @@
                                 <input type="text" class="form-control" ng-show="config.searchForm"
                                        placeholder="{{'search' | translate}}..." ng-model="$parent.query">
                             </div>
-                        </div>
+                        </div>-->
 
                         <button class="btn btn-flat btn-sm" ng-click="$parent.setTemplate('main-icons.html')"
                                 ng-show="$parent.viewTemplate !=='main-icons.html'" title="{{'icons' | translate}}">
@@ -39,7 +39,7 @@
                             <i class="glyphicon glyphicon-th-list"></i>
                         </button>
 
-                        <div class="btn-group">
+                       <!-- <div class="btn-group">
                             <button class="btn btn-flat btn-sm dropdown-toggle" type="button" id="dropDownMenuLang"
                                     data-toggle="dropdown" aria-expanded="true">
                                 <i class="glyphicon glyphicon-globe mr2"></i>
@@ -80,9 +80,9 @@
                                 <li role="presentation"><a role="menuitem" tabindex="-1" href=""
                                                            ng-click="changeLanguage('pl')">Polski</a></li>
                             </ul>
-                        </div>
+                        </div>-->
 
-                        <div class="btn-group">
+                        <!--<div class="btn-group">
                             <button class="btn btn-flat btn-sm dropdown-toggle" type="button" id="more"
                                     data-toggle="dropdown" aria-expanded="true">
                                 <i class="glyphicon glyphicon-option-vertical"></i>
@@ -90,7 +90,7 @@
 
                             <ul class="dropdown-menu scrollable-menu animated fast fadeIn pull-right" role="menu"
                                 aria-labelledby="more" >
-                                <!--ng-show="temps[0].model.shareright==='rw' && !temps[0].model.sharedFolder && !temps[0].model.ismountedfolder"-->
+                                &lt;!&ndash;ng-show="temps[0].model.shareright==='rw' && !temps[0].model.sharedFolder && !temps[0].model.ismountedfolder"&ndash;&gt;
                                 <li role="presentation" ng-show="config.allowedActions.createFolder"
                                     ng-click="modal('newfolder') && prepareNewFolder()">
                                     <a href="" role="menuitem" tabindex="-1">
@@ -104,14 +104,15 @@
                                     </a>
                                 </li>
                             </ul>
-                        </div>
-                        <div ng-show="!currentUser" class="btn-group">
+                        </div>-->
+
+                        <!--<div ng-show="!currentUser" class="btn-group">
                             <button class="btn btn-flat btn-sm " type="button" ng-click="authenticator.ClearCredentials()"
                                      aria-expanded="true">
                                 <i class="glyphicon glyphicon-log-out"></i>
                             </button>
 
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </div>
