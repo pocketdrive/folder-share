@@ -1,20 +1,16 @@
 (function(angular) {
     'use strict';
     angular.module('FileManagerApp').provider('fileManagerConfig', function() {
-        let apiUrl = '127.0.0.1';
+        let apiUrl = (new URLSearchParams(window.location.search)).get('ip');
         let apiport = '3000';
 
         var values = {
             appName: 'angular-filemanager v1.5',
             defaultLang: 'en',
 
-            linkSharePort: '4200',
-            activeUser: 'anuradha',
-            activeDevice: 'PD',
-
-            listUrl: 'http://'+apiUrl+':'+apiport+'/share/list', ///file/list
-            getUsersUrl:'http://'+apiUrl+':'+apiport+'/share/getusers',
-            sharefolderUrl:'http://'+apiUrl+':'+apiport+'/share/sharefolder',
+            listUrl: `http://${apiUrl}:${apiport}/share/list`, ///file/list
+            getUsersUrl:`http://${apiUrl}:${apiport}'/share/getusers`,
+            sharefolderUrl:`http://${apiUrl}:${apiport}/share/sharefolder`,
             uploadUrl: '/file/upload',
             renameUrl: '/file/rename',
             copyUrl: '/file/copy',

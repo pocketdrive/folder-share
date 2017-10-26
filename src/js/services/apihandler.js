@@ -11,7 +11,6 @@
                 this.deviceName = "";
                 this.error = '';
                 this.username = (new URLSearchParams(window.location.search)).get('username');
-
             };
 
             ApiHandler.prototype.deferredHandler = function (data, deferred, code, defaultMsg) {
@@ -50,6 +49,7 @@
                     username: self.username,
                     fileExtensions: exts && exts.length ? exts : undefined
                 };
+
 
                 self.inprocess = true;
                 self.error = '';
