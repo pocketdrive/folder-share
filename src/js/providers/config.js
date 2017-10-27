@@ -9,7 +9,7 @@
             defaultLang: 'en',
 
             listUrl: `http://${apiUrl}:${apiport}/share/list`, ///file/list
-            getUsersUrl:`http://${apiUrl}:${apiport}'/share/getusers`,
+            getUsersUrl:`http://${apiUrl}:${apiport}/share/getusers`,
             sharefolderUrl:`http://${apiUrl}:${apiport}/share/sharefolder`,
             uploadUrl: '/file/upload',
             renameUrl: '/file/rename',

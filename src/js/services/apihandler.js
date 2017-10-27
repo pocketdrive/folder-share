@@ -22,7 +22,7 @@
                     this.error = 'Error 404 - Backend bridge is not working, please check the ajax response.';
                 }
                 if (code === 503) {
-                    this.error = 'Error - Pocket Drive device ' + this.deviceName + ' cannot be reached at the momentttttt.';
+                    this.error = 'Error - Pocket Drive device ' + this.deviceName + ' cannot be reached at the moment.';
                 }
                 if (data.result && data.result.error) {
                     this.error = data.result.error;
@@ -99,6 +99,7 @@
                 };
 
                 $http.post(apiUrl, data).then(function (response) {
+                    console.log(response);
                     self.deferredHandler(response.data, deferred, response.status);
                 }, function (response) {
                     self.deferredHandler(response.data, deferred, response.status, $translate.instant('error_copying'));
@@ -137,7 +138,9 @@
                 self.inprocess = true;
                 self.error = '';
 
+                console.log(apiUrl, '>>>>>>>>>>>>>>>>>');
                 $http.post(apiUrl, data).then(function (response) {
+                    console.log(apiUrl, response);
                     self.deferredHandler(response.data, deferred, response.status);
                 }, function (response) {
                     self.deferredHandler(response.data, deferred, response.status, $translate.instant('error_copying'));
